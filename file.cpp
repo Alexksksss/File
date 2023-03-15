@@ -24,7 +24,7 @@ bool AddFile(Qstring FN);//статус добавления файла в на�
 bool DelFile(Qstring FN);//0 если не можем удалить (если его нет изначально)
 
 
-??CheckStatus();
+//CheckStatus();
 
 private:
 //FileState *objects;
