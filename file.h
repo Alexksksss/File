@@ -1,46 +1,22 @@
 #ifndef FILE_H
 #define FILE_H
 
-
-
-//#include <QObject>
-//#include <QVector>
-//#include <QFileInfo>
-//#include <QFileSystemWatcher>
-
-////пока без вектора. Только проверка на существование и изменение размера одного!! файла
-
+#pragma once
 
 #include <QObject>
-#include <QString>
-#include <QFileInfo>
+#include <QDebug>
 
-
-class CheckFile : public QObject
+class FileConsolePrinter : public QObject
 {
     Q_OBJECT
+
 public:
-    CheckFile(const QString& filename);
-    CheckFile(const QString& filename): m_fileName(filename), m_size(0), m_is_exist(false){}//конструктор
-    void update_check();//общая проверка
+    explicit FileConsolePrinter(QObject* parent = nullptr);
 
 public slots:
-    void print_Created(const QString& filename, qint64 size);//в другой класс?
-    void print_Changed(const QString& filename, qint64 size);
-    void print_Deleted(const QString& filename, qint64 size);
-
-signals:
-    void file_Created(const QString& filename, qint64 size);//создан
-    void file_Changed(const QString& filename, qint64 size);//редактирован
-    void file_Deleted(const QString& filename);//Если файл удалили
-
-
-private:
-    QString m_fileName;//имя файла
-    qint64 m_size; //размер файла
-    bool m_is_exist; //существование файла
-
-
+    void onFileExists(qint64 size);
+    void onFileChanged(qint64 size);
+    void onFileRemoved();
 };
 
 
