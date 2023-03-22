@@ -27,6 +27,8 @@
 #include <QCoreApplication>
 #include <QTimer>
 #include <iostream>
+#include <QThread>
+
 
 
 #include "filewatcher.h"
@@ -35,17 +37,21 @@
 using namespace std;
 int main(int argc, char *argv[])
 {
-    //while(true){
     QCoreApplication app(argc, argv);
 
     FileWatcher watcher("D:/Qt/test.txt");
-
     FileConsolePrinter printer;
+
 
     QObject::connect(&watcher, &FileWatcher::fileExists, &printer, &FileConsolePrinter::onFileExists);
     QObject::connect(&watcher, &FileWatcher::fileChanged, &printer, &FileConsolePrinter::onFileChanged);
     QObject::connect(&watcher, &FileWatcher::fileRemoved, &printer, &FileConsolePrinter::onFileRemoved);
 
-    QTimer::singleShot(0, &app, SLOT(quit()));
+    while(true){
+       QThread::msleep(5000);
+       watcher.checkFile();
+    }
+
+    //QTimer::singleShot(0, &app, SLOT(quit()));
     return app.exec();//}
 }

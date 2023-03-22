@@ -13,7 +13,7 @@ class FileWatcher : public QObject
     Q_OBJECT
 
 public:
-    explicit FileWatcher(const QString& filePath, QObject* parent = nullptr);
+    explicit FileWatcher(const QString& filePath, QObject* parent = nullptr);// чтобы не было конвертирования в конструкторе
     ~FileWatcher();
 signals:
     void fileExists(qint64 size);

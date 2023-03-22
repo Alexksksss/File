@@ -17,7 +17,7 @@ public slots:
     void onFileExists(qint64 size);
     void onFileChanged(qint64 size);
     void onFileRemoved();
-};
 
+};
 
 #endif // FILE_H
