@@ -8,7 +8,7 @@
 FileWatcher::FileWatcher(const QString& filePath, QObject* parent) : QObject(parent), m_filePath(filePath), m_file(filePath), m_fileSize(-1), is_Exists(false)
 {
     //std::cout << "constr  " << std::endl;
-    checkFile();
+    //checkFile();
 }
 
 FileWatcher::~FileWatcher()
@@ -18,38 +18,7 @@ FileWatcher::~FileWatcher()
     }
 }
 
-void FileWatcher::checkFile()
-//{
-//    //std::cout << "in check  " << std::endl;
-//    QFileInfo fileInfo(m_filePath);
-
-//    QString Name(fileInfo.fileName());
-
-//    if (!fileInfo.exists()) {
-//        if (m_file.isOpen()) {
-//            m_file.close();
-//        }
-//        //std::cout << "in check remove  " << std::endl;
-//        emit fileRemoved(Name);
-//        return;
-//    }
-
-//    qint64 fileSize = fileInfo.size();
-
-//    if (m_fileSize != fileSize) {
-//            m_fileSize = fileSize;
-//            //std::cout << "in check change " << std::endl;
-//            emit fileChanged(fileSize, Name);
-//    }
-//    else {
-//        m_fileSize = fileSize;
-//        //std::cout << "in check exists" << std::endl;
-//       //emit fileExists(fileSize);
-//    }
-//}
-
-
-{
+void FileWatcher::checkFile(){
     QFileInfo fileInfo(m_filePath);
     QString Name(fileInfo.fileName());
     qint64 fileSize = fileInfo.size();
@@ -69,6 +38,21 @@ void FileWatcher::checkFile()
 
     else if(!existing && is_Exists){
         is_Exists = ! is_Exists;
+        emit fileRemoved(Name);
+    }
+}
+
+void FileWatcher::checkFirstPos(){
+    QFileInfo fileInfo(m_filePath);
+    QString Name(fileInfo.fileName());
+    qint64 fileSize = fileInfo.size();
+
+    bool existing = fileInfo.exists();
+    if (existing){
+        m_fileSize = fileSize;
+        emit fileExists(fileSize, Name);
+    }
+    else {
         emit fileRemoved(Name);
     }
 }

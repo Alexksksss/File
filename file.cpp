@@ -18,7 +18,7 @@ FileConsolePrinter::FileConsolePrinter(QObject* parent): QObject(parent)
 
 void FileConsolePrinter::onFileExists(qint64 size, QString filePath)
 {
-    cout << "File " << filePath.toStdString() <<" exists, size =  " << size << endl;
+    cout << "File " << filePath.toStdString() <<" exists or appeared, size =  " << size << endl;
 }
 
 void FileConsolePrinter::onFileChanged(qint64 size, QString filePath)

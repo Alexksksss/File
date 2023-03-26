@@ -27,6 +27,7 @@ private:
 
 public slots:
     void checkFile();
+    void checkFirstPos();
 };
 
 
