@@ -1,11 +1,10 @@
 #ifndef FILEWATCHER_H
 #define FILEWATCHER_H
 
-
 #pragma once
 
 #include <QObject>
-#include <QFile>
+//#include <QFile>
 #include <QFileInfo>
 
 class FileWatcher : public QObject
@@ -13,12 +12,12 @@ class FileWatcher : public QObject
     Q_OBJECT
 
 public:
-    explicit FileWatcher(const QString& filePath, QObject* parent = nullptr);// чтобы не было конвертирования в конструкторе
+    FileWatcher(const QString& filePath, QObject* parent = nullptr);
     ~FileWatcher();
 signals:
-    void fileExists(qint64 size);
-    void fileChanged(qint64 size);
-    void fileRemoved();
+    void fileExists(qint64 size, QString file_Path);
+    void fileChanged(qint64 size, QString file_Path);
+    void fileRemoved(QString file_Path);
 
 private:
     QString m_filePath;

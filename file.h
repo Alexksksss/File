@@ -4,19 +4,18 @@
 #pragma once
 
 #include <QObject>
-#include <QDebug>
 
 class FileConsolePrinter : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit FileConsolePrinter(QObject* parent = nullptr);
+    FileConsolePrinter(QObject* parent = nullptr);
 
 public slots:
-    void onFileExists(qint64 size);
-    void onFileChanged(qint64 size);
-    void onFileRemoved();
+    void onFileExists(qint64 size, QString filePath);
+    void onFileChanged(qint64 size, QString filePath);
+    void onFileRemoved(QString filePath);
 
 };
 
