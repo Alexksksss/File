@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     QObject::connect(&watcher, &FileWatcher::fileRemoved, &printer, &FileConsolePrinter::onFileRemoved);
 
     while(true){
-       QThread::msleep(5000);
+       QThread::msleep(1000);
        watcher.checkFile();
     }
 

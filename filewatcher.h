@@ -23,6 +23,7 @@ private:
     QString m_filePath;
     QFile m_file;
     qint64 m_fileSize;
+    bool is_Exists;
 
 public slots:
     void checkFile();

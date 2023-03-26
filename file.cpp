@@ -12,14 +12,6 @@ using namespace std;
 FileConsolePrinter::FileConsolePrinter(QObject* parent): QObject(parent)
 {
     //cout<<"constr FCP";
-//    QString Path = "D:/QT/test.txt";
-
-//    QString Name = Path.right(Path.lastIndexOf('/'));
-//    QString Name2 = Name.sliced(Name.indexOf('/'));
-//    cout<<Path.lastIndexOf('/')<<endl;//5
-//    cout<<Name.toStdString()<<endl;
-//    cout<<Name2.toStdString();
-
 
 }
 
@@ -38,5 +30,3 @@ void FileConsolePrinter::onFileRemoved(QString filePath)
 {
     cout << "File " << filePath.toStdString() << " removed or deleted" << endl;
 }
-
-
