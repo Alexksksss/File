@@ -10,12 +10,12 @@ class FileConsolePrinter : public QObject
     Q_OBJECT
 
 public:
-    FileConsolePrinter(QObject* parent = nullptr);
+    FileConsolePrinter(QObject* parent = nullptr);//конструктор
 
 public slots:
-    void onFileExists(qint64 size, QString filePath);
-    void onFileChanged(qint64 size, QString filePath);
-    void onFileRemoved(QString filePath);
+    void onFileExists(qint64 size, QString filePath);//вывод существания файла
+    void onFileChanged(qint64 size, QString filePath);//вывод изменения размера файла
+    void onFileRemoved(QString filePath);//вывод удаления файла
 
 };
 

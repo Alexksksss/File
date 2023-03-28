@@ -1,7 +1,5 @@
-//#include <QFile>
 #include <QFileInfo>
 #include <QObject>
-//#include <QDebug>
 #include <iostream>
 
 #include "file.h"

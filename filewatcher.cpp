@@ -32,25 +32,24 @@ void FileWatcher::addFile(QString filePath)
 void FileWatcher::checkFile(){
     for (int i = 0; i < m_fileList.size(); i++){
         QFileInfo fileInfo(m_fileList[i].filePath());
-        QString Name(fileInfo.fileName());
-        qint64 fileSize = fileInfo.size();
+        QString Name(fileInfo.fileName());//Имя файла для красивовго вывода
+        qint64 fileSize = fileInfo.size();//Размер файла
+        bool existing = fileInfo.exists();//Сущестовование файла
 
-        bool existing = fileInfo.exists();
-
-        if (existing && !m_isExist[Name]){
+        if (existing && !m_isExist[Name]){//Если до этого не существовал, а сейчас существует
             m_fileSizes[Name] = fileSize;
             m_isExist[Name] = !m_isExist[Name];
-            emit fileExists(fileSize, Name);
+            emit fileExists(fileSize, Name);//отправка сигнала на печать, что файл теперь существует
         }
 
-        else if(existing && fileSize != m_fileSizes[Name]){
+        else if(existing && fileSize != m_fileSizes[Name]){//Существует, размер поменялся
             m_fileSizes[Name] = fileSize;
-            emit fileChanged(fileSize, Name);
+            emit fileChanged(fileSize, Name);//отправка сигнала на печать, что файл был изменен
         }
 
-        else if(!existing && m_isExist[Name]){
+        else if(!existing && m_isExist[Name]){//Не существует, а до этого существовал
             m_isExist[Name] = ! m_isExist[Name];
-            emit fileRemoved(Name);
+            emit fileRemoved(Name);//отправка сигнала на печать, что файл удален или перемещен
         }
     }
 }
