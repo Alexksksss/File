@@ -10,9 +10,7 @@ using namespace std;
 FileConsolePrinter::FileConsolePrinter(QObject* parent): QObject(parent)
 {
     //cout<<"constr FCP";
-
 }
-
 
 void FileConsolePrinter::onFileExists(qint64 size, QString filePath)
 {

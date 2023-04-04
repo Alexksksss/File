@@ -8,13 +8,15 @@
 #include <QList>
 #include <QVector>
 #include <QMap>
+#include <QPair>
+
 
 class FileWatcher : public QObject
 {
     Q_OBJECT
 
 public:
-    FileWatcher(QObject* parent = nullptr);//const QString& filePath,
+    FileWatcher();
     //~FileWatcher();
     void addFile(QString filePath);//добавление файла в лсит
 signals:
@@ -23,14 +25,8 @@ signals:
     void fileRemoved(QString file_Path);//сигнал удаления
 
 private:
-    /*
-    QString m_filePath;
-    QFile m_file;
-    qint64 m_fileSize;
-    bool is_Exists;*/
     QList<QFileInfo> m_fileList;//список элементов типа QFileInfo
-    QMap <QString, qint64> m_fileSizes;//контейнер ключ (QString) значение(qint64)
-    QMap <QString, bool> m_isExist;//контейнер ключ (QString) значение(bool)
+    QMap<QString, QPair<qint64, bool> >  m_fileInfo;//контейнер ключ (QString) значения(qint64, bool)
 
 public slots:
     void checkFile();//проверка состояния файла + отправка сигналов

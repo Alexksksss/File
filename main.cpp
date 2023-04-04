@@ -24,6 +24,9 @@ int main(int argc, char *argv[])
     watcher->addFile("D:/Qt/test2.txt");
     watcher->addFile("D:/Qt/test3.txt");
 
+    watcher->addFile("D:/Qt/test.txt");//добавление файлов в наблюдатель
+    watcher->addFile("D:/Qt/test2.txt");
+    watcher->addFile("D:/Qt/test3.txt");
     //связь сигналов и слотов
     QObject::connect(watcher, &FileWatcher::fileExists, printer, &FileConsolePrinter::onFileExists);
     QObject::connect(watcher, &FileWatcher::fileChanged, printer, &FileConsolePrinter::onFileChanged);
@@ -39,10 +42,3 @@ int main(int argc, char *argv[])
     //QTimer::singleShot(0, &app, SLOT(quit()));
     return app.exec();
 }
-
-
-/* TODO
- * изначальная проверка на несуществоание??
- * доработка цикла
- * singleton
-*/
