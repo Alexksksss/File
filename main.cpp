@@ -34,6 +34,8 @@ int main(int argc, char *argv[])
 
 
     cout<<"Starting with:"<<endl;
+    watcher->checkFirstPos();
+    cout<<"Changes:"<<endl;
     while(true){//бесконечный цикл с проверкой состояния файла каждую секунду
        QThread::msleep(1000);
        watcher->checkFile();

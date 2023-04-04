@@ -6,24 +6,30 @@
 
 #include "filewatcher.h"
 
-FileWatcher::FileWatcher()//, m_filePath(filePath), m_file(filePath), m_fileSize(-1), is_Exists(false)
+FileWatcher::FileWatcher()
 {
-    //std::cout << "constr  " << std::endl;
-    //checkFile();
+
 }
 
 void FileWatcher::addFile(QString filePath)
 {
     QFileInfo fileInfo(filePath);
 
-    m_fileList.append(fileInfo);
-
     QString key = fileInfo.filePath();
-    m_fileInfo.insert(key, QPair<qint64, bool>(fileInfo.size(), fileInfo.exists()));
+    if (m_fileInfo.contains(key)) {
+        // если ключ уже существует, обновляем значения
+        QPair<qint64, bool>& fileInfoPair = m_fileInfo[key];
+        fileInfoPair.first = fileInfo.size();
+        fileInfoPair.second = fileInfo.exists();
+    } else {
+        // если ключ не существует, добавляем новое значение
+        m_fileList.append(fileInfo);
+        m_fileInfo.insert(key, QPair<qint64, bool>(fileInfo.size(), fileInfo.exists()));
+    }
 }
 
 void FileWatcher::checkFile(){
-    for (int i = 0; i < m_fileList.size(); ++i){
+    for (int i = 0; i < m_fileList.size(); i++){
 
         QFileInfo fileInfo(m_fileList[i].filePath());
         QPair<qint64, bool> fileInfoPair = m_fileInfo[m_fileList[i].filePath()];
@@ -50,19 +56,26 @@ void FileWatcher::checkFile(){
     }
 }
 
-/*
-void FileWatcher::checkFirstPos(){
-    QFileInfo fileInfo(m_filePath);
-    QString Name(fileInfo.fileName());
-    qint64 fileSize = fileInfo.size();
 
-    bool existing = fileInfo.exists();
-    if (existing){
-        m_fileSize = fileSize;
-        emit fileExists(fileSize, Name);
-    }
-    else {
-        emit fileRemoved(Name);
+void FileWatcher::checkFirstPos(){
+    for (int i = 0; i < m_fileList.size(); i++){
+
+        QFileInfo fileInfo(m_fileList[i].filePath());
+        QPair<qint64, bool> fileInfoPair = m_fileInfo[m_fileList[i].filePath()];
+        QString Name(fileInfo.fileName());//Имя файла для красивого вывода
+        qint64 fileSize = fileInfo.size();//Размер файла
+        bool existing = fileInfo.exists();//Сущестовование файла
+
+        if (existing){//Изначально существует
+            fileInfoPair.second = true;
+            m_fileInfo[fileInfo.filePath()].second = true;
+            m_fileInfo[fileInfo.filePath()].first = fileSize;
+            emit fileExists(fileSize, Name);//отправка сигнала на печать, что файл существует
+        }
+        else if(!existing){//Не существует
+            m_fileInfo[fileInfo.filePath()].second = false;
+            emit fileRemoved(Name);//отправка сигнала на печать, что файл не существует
+        }
     }
 }
-*/
+

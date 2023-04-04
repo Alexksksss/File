@@ -10,7 +10,7 @@ class FileConsolePrinter : public QObject
     Q_OBJECT
 
 public:
-    FileConsolePrinter(QObject* parent = nullptr);//конструктор
+    FileConsolePrinter();//конструктор
 
 public slots:
     void onFileExists(qint64 size, QString filePath);//вывод существания файла

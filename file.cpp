@@ -7,7 +7,7 @@
 using namespace std;
 
 
-FileConsolePrinter::FileConsolePrinter(QObject* parent): QObject(parent)
+FileConsolePrinter::FileConsolePrinter()
 {
     //cout<<"constr FCP";
 }

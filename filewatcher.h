@@ -30,7 +30,7 @@ private:
 
 public slots:
     void checkFile();//проверка состояния файла + отправка сигналов
-   // void checkFirstPos();
+    void checkFirstPos();
 };
 
 
