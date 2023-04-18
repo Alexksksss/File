@@ -10,6 +10,12 @@ FileWatcher::FileWatcher()
 {
 
 }
+FileWatcher* FileWatcher::Instance()
+{
+    static FileWatcher* instance = new FileWatcher(); // создание объекта FileWatcher, если он еще не создан
+    return instance;
+}
+
 
 void FileWatcher::addFile(QString filePath)
 {

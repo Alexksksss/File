@@ -16,7 +16,8 @@ class FileWatcher : public QObject
     Q_OBJECT
 
 public:
-    FileWatcher();
+    static FileWatcher* Instance(); // добавлен статический метод Instance()
+    //FileWatcher();
     //~FileWatcher();
     void addFile(QString filePath);//добавление файла в лсит
 signals:
@@ -25,6 +26,7 @@ signals:
     void fileRemoved(QString file_Path);//сигнал удаления
 
 private:
+    FileWatcher();
     QList<QFileInfo> m_fileList;//список элементов типа QFileInfo
     QMap<QString, QPair<qint64, bool> >  m_fileInfo;//контейнер ключ (QString) значения(qint64, bool)
 
