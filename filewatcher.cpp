@@ -57,7 +57,7 @@ void FileWatcher::checkFile(){
 }
 
 
-void FileWatcher::checkFirstPos(){
+void FileWatcher::showCurrentState(){
     for (int i = 0; i < m_fileList.size(); i++){
 
         QFileInfo fileInfo(m_fileList[i].filePath());
