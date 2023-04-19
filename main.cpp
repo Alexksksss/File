@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     //filePathes.push_back("D:/Qt/test.txt");
     //filePathes.push_back("D:/Qt/test2.txt");
 
-    FileWatcher* watcher = new FileWatcher();//создание наблюдателя
+    FileWatcher* watcher = FileWatcher::Instance();//создание наблюдателя с использованием Singleton
     FileConsolePrinter* printer = new FileConsolePrinter();//создание принтера
 
     watcher->addFile("D:/Qt/test.txt");//добавление файлов в наблюдатель
