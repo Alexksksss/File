@@ -17,5 +17,4 @@
 Можно использовать бесконечный цикл, в котором будем обновлять состояние объекта/объектов  каждые 100 миллисекунд
 (например так  std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );).
 
-
-![uml]([image_url](https://github.com/Alexksksss/File/blob/singleton/photo_2023-04-19_22-22-31.jpg))
+![uml](https://github.com/Alexksksss/File/blob/singleton/photo_2023-04-19_22-22-31.jpg)
