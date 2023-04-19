@@ -1,36 +1,28 @@
-class StateFile{
+#include <QFileInfo>
+#include <QObject>
+#include <iostream>
 
-public:
-StateFile(Qstring );
-StateFile(){
+#include "file.h"
 
-//???
+using namespace std;
+
+
+FileConsolePrinter::FileConsolePrinter()
+{
+    //cout<<"constr FCP";
 }
 
-private:
-Qstring FileName;
-qint64 size;
-bool isExist;
+void FileConsolePrinter::onFileExists(qint64 size, QString filePath)
+{
+    cout << "File " << filePath.toStdString() <<" exists or appeared, size =  " << size << endl;
+}
 
+void FileConsolePrinter::onFileChanged(qint64 size, QString filePath)
+{
+    cout << "File " << filePath.toStdString() << " changed, size = " << size << endl;
+}
 
-};
-
-
-class FileMonitor{
-
-public:
-FileMonitor();
-bool AddFile(Qstring FN);//статус добавления файла в наблюдатель. 0 если объект уже под наблюдением
-bool DelFile(Qstring FN);//0 если не можем удалить (если его нет изначально)
-
-
-//CheckStatus();
-
-private:
-//FileState *objects;
-//FileState **objects;
-
-//Контейнеры
-//QVector <FileState> objects;
-//QSet <FileState> objects;
-};
+void FileConsolePrinter::onFileRemoved(QString filePath)
+{
+    cout << "File " << filePath.toStdString() << " removed or deleted" << endl;
+}
