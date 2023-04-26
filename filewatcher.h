@@ -17,8 +17,6 @@ class FileWatcher : public QObject
 
 public:
     static FileWatcher* Instance(); // добавлен статический метод Instance()
-    //FileWatcher();
-    //~FileWatcher();
     void addFile(QString filePath);//добавление файла в лсит
 signals:
     void fileExists(qint64 size, QString file_Path);//сигнал существования

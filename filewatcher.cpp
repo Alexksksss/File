@@ -5,20 +5,31 @@
 #include <iostream>
 
 #include "filewatcher.h"
+
 FileWatcher* FileWatcher::instance = nullptr;
+
 FileWatcher::FileWatcher()
 {
 
 }
+
 FileWatcher* FileWatcher::Instance()
 {
-    static FileWatcher* instance = new FileWatcher(); // создание объекта FileWatcher, если он еще не создан
-    return instance;
+    try {
+        static FileWatcher* instance = new FileWatcher(); // создание объекта FileWatcher, если он еще не создан
+        return instance;
+    }
+    catch (const std::bad_alloc&) { // Обработка исключения, связанного с нехваткой памяти или ограничений доступа
+        return nullptr;
+    }
+    return nullptr;
 }
+
 
 FileWatcher::~FileWatcher()
 {
-     delete instance;
+     if(instance != nullptr)
+         delete instance;
 }
 
 void FileWatcher::addFile(QString filePath)
