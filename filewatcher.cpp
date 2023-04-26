@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "filewatcher.h"
-
+FileWatcher* FileWatcher::instance = nullptr;
 FileWatcher::FileWatcher()
 {
 
@@ -16,6 +16,10 @@ FileWatcher* FileWatcher::Instance()
     return instance;
 }
 
+FileWatcher::~FileWatcher()
+{
+     delete instance;
+}
 
 void FileWatcher::addFile(QString filePath)
 {

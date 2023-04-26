@@ -27,8 +27,10 @@ signals:
 
 private:
     FileWatcher();
+    ~FileWatcher();
     QList<QFileInfo> m_fileList;//список элементов типа QFileInfo
     QMap<QString, QPair<qint64, bool> >  m_fileInfo;//контейнер ключ (QString) значения(qint64, bool)
+    static FileWatcher* instance;
 
 public slots:
     void checkFile();//проверка состояния файла + отправка сигналов
