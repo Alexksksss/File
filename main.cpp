@@ -2,7 +2,6 @@
 #include <QTimer>
 #include <iostream>
 #include <QThread>
-#include <QVector>
 
 #include "filewatcher.h"
 #include "file.h"
@@ -11,11 +10,6 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);//создание объекта приложения Qt
-    //QStringList filePathes = {"D:/Qt/test.txt", "D:/Qt/test2.txt"};
-
-    //QVector<QString> filePathes;
-    //filePathes.push_back("D:/Qt/test.txt");
-    //filePathes.push_back("D:/Qt/test2.txt");
 
     FileWatcher* watcher = FileWatcher::Instance();//создание наблюдателя с использованием Singleton
     FileConsolePrinter* printer = new FileConsolePrinter();//создание принтера
@@ -40,7 +34,5 @@ int main(int argc, char *argv[])
        QThread::msleep(1000);
        watcher->checkFile();
     }
-
-    //QTimer::singleShot(0, &app, SLOT(quit()));
     return app.exec();
 }
