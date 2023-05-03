@@ -15,14 +15,8 @@ FileWatcher::FileWatcher()
 
 FileWatcher& FileWatcher::Instance()
 {
- //   try {
-        static FileWatcher instance; // создание объекта FileWatcher, если он еще не создан
-        return instance;
-//    }
-//    catch (const std::bad_alloc&) { // Обработка исключения, связанного с нехваткой памяти или ограничений доступа
-//        return nullptr;
-//    }
-//    return nullptr;
+    static FileWatcher instance; // создание объекта FileWatcher, если он еще не создан
+    return instance;
 }
 
 
